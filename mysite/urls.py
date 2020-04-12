@@ -1,21 +1,31 @@
-"""mysite URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
+from webProject import views
+from django.urls import include
 from django.urls import path
 
-urlpatterns = [
+urlpatterns = (
     path('admin/', admin.site.urls),
-]
+    path('accounts/', include('accounts.urls')),
+    path('', views.HomePageView.as_view()),
+    path('calisanlar/', views.tum_calisanlar),
+    path('calisan/,<int:calisan_no>/', views.calisan_detay),
+    path('yoneticiler/', views.tum_yoneticiler),
+    path('yonetici/,<int:yonetici_no>/', views.yonetici_detay),
+    path('planlar/', views.tum_planlar),
+    path('plan/,<int:plan_no>/', views.plan_detay),
+    path('mekanlar/', views.tum_mekanlar),
+    path('mekan/,<int:mekan_no>/', views.mekan_detay),
+
+    path('GirisSayfasi/', views.GirisSayfasi.as_view()),
+    path('GirisSayfasi/ProfilSayfasi/', views.ProfilSayfasi.as_view()),
+    path('GirisSayfasi/ProfilSayfasi/CalismaPlani/', views.CalismaPlani.as_view()),
+    path('GirisSayfasi/ProfilSayfasi/CalismaPlani/GirisSayfasi/', views.GirisSayfasi.as_view()),
+    path('GirisSayfasi/ProfilSayfasi/GecmisCalismaPlani/', views.GecmisCalismaPlani.as_view()),
+    path('GirisSayfasi/ProfilSayfasi/İstekYap/', views.İstekYap.as_view()),
+    path('GirisSayfasi/ProfilSayfasi/DegisiklikTalebi/', views.DegisiklikTalebi.as_view()),
+    path('GirisSayfasi/ProfilSayfasi/MesajKutusu/', views.MesajKutusu.as_view()),
+    path('GirisSayfasi/ProfilSayfasi/İstekYap/IstekYapSec/', views.IstekYapSec.as_view()),
+    path('GirisSayfasi/ProfilSayfasi/CalismaPlani/GecmisShift/', views.GecmisShift.as_view()),
+
+
+)
